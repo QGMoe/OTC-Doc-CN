@@ -1,5 +1,5 @@
 name: doc
-title: 天圆地方模组文档
+title: 天圆地方-文档 v0.2.x
 version: 0.2
 nav:
 - modules/ROOT/nav.adoc
