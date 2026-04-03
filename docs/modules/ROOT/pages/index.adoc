@@ -1,0 +1,9 @@
+= 天圆地方 (GeoCraft/OrbTellusCraft)
+
+欢迎来到模组文档。
+
+== 模组介绍
+
+天圆地方（GeoCraft/OrbTellusCraft，简称 OTC）是一个 Minecraft 模组。
+
+该站点目前是测试状态。
