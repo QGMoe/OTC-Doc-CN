@@ -1,5 +1,6 @@
 site:
   title: 天圆地方模组文档
+  start_page: doc::index.adoc
 
 content:
   sources:
