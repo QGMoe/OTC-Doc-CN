@@ -1,0 +1,15 @@
+site:
+  title: 天圆地方模组文档
+
+content:
+  sources:
+    - url: .
+      branches: v*
+      start_path: docs
+
+ui:
+  bundle:
+    url: https://github.com/antora/antora-ui-default/releases/latest/download/ui-bundle.zip
+
+output:
+  dir: public
