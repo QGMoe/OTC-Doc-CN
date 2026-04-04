@@ -10,7 +10,9 @@ content:
 
 asciidoc:
   extensions:
-    - asciidoctor-plantuml
+    - asciidoctor-kroki
+  attributes:
+    kroki-server-url: https://kroki.io
 
 ui:
   bundle:

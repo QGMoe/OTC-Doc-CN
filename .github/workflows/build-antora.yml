@@ -28,16 +28,13 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Install Extensions Plantuml
-        run: gem install asciidoctor-plantuml
-
       - name: Run Antora
         run: |
           docker run --rm \
             -v $PWD:/antora \
             -w /antora \
             antora/antora \
-            antora-playbook.yml
+            sh -c "npm install asciidoctor-kroki && antora antora-playbook.yml"
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
