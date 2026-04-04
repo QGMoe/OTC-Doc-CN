@@ -4,14 +4,14 @@
   </div>
 
   <div class="navbar-end">
-    {{#if page.versions}}
+    {{#if page.component.versions}}
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link">
-        版本：v{{page.version}}.x
+        版本：v{{page.componentVersion.version}}.x
       </a>
 
       <div class="navbar-dropdown">
-        {{#each page.versions}}
+        {{#each page.component.versions}}
         <a class="navbar-item" href="{{{url}}}">v{{version}}.x</a>
         {{/each}}
       </div>
