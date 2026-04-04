@@ -2,9 +2,23 @@
   <div class="navbar-brand">
     <a class="navbar-item" href="/">天圆地方 OrbTellusCraft 文档</a>
   </div>
-          
+
   <div class="navbar-end">
+    {{#if page.versions}}
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        版本：v{{page.version}}.x
+      </a>
+
+      <div class="navbar-dropdown">
+        {{#each page.versions}}
+        <a class="navbar-item" href="{{{url}}}">v{{version}}.x</a>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    
     <a class="navbar-item" href="https://www.mcmod.cn/class/22470.html">MC百科</a>
     <a class="navbar-item" href="https://github.com/QGMoe/GeoCraft">GitHub</a>
   </div>
-</header>>
+</header>
