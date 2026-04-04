@@ -1,9 +1,53 @@
-= 天圆地方 (GeoCraft/OrbTellusCraft)
+= 天圆地方 OrbTellusCraft
 
-欢迎来到模组文档。
+欢迎来到天圆地方中文文档站。该站点目前处于测试状态，若要阅读全部中文文档请前往天圆地方的 https://www.mcmod.cn/class/22470.html[MC 百科] 页面。
+
+image:https://raw.githubusercontent.com/KessokuTeaTime/Badges-Extra/refs/heads/main/assets/cozy/available/mcmodcn_64h.png[link=https://www.mcmod.cn/class/22470.html,alt="go to download GeoCraft on mcmod.cn. 在 MC百科 上下载 天圆地方。"] 
+image:https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/cozy/available/curseforge_64h.png[link=https://www.curseforge.com/minecraft/mc-mods/qg-geocraft]  
+image:https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/cozy/available/modrinth_64h.png[link=https://modrinth.com/project/3CKJAWbv]  
+image:https://raw.githubusercontent.com/intergrav/devins-badges/refs/heads/v3/assets/cozy/available/github_64h.png[link=https://github.com/QGMoe/GeoCraft]
+
+OrbTellusCraft是天圆地方未来的英文名，但在当前仍以 GeoCraft为主。
 
 == 模组介绍
 
-天圆地方（GeoCraft/OrbTellusCraft，简称 OTC）是一个 Minecraft 模组。
+天圆地方（OrbTellusCraft，简称 OTC）是一个致力于将地理要素融合进 Minecraft 的模组。 模组在保证尽可能不添加新方块、物品等要素的情况下，尽一切可能通过修改游戏机制，使 Minecraft 世界更加符合真实世界，将真正的地理带入 Minecraft。
 
-该站点目前是测试状态。
+该模组仍处于早期开发阶段，功能尚不全面。
+
+模组同时也拥有高度可自定义的配置文件，并提供了功能丰富的 API，允许第三方模组实现更多更好的玩法。
+
+== 本站介绍
+
+本站是天圆地方的中文文档站点。但由于 MC 百科的存在，最新的文档（latest）请见 MC 百科，本站主要弥补 MC 百科缺乏多版本文档的问题。本站的文档更新方式见下：
+
+[plantuml]
+----
+@startuml
+
+start
+
+:MC 百科更新;
+
+fork
+  :人类手动同步;
+fork again
+  :AI 自动同步;
+end fork
+
+:提交 Pull Request;
+
+:审核 / 修改 / 合并;
+
+:最新版本文档;
+
+:模组版本发布;
+
+:转入旧版文档;
+
+stop
+
+@enduml
+----
+
+其中，进入旧版文档阶段后，文档内容会脱离 MC 百科，接受第三方 Pull Request 独自更新。
