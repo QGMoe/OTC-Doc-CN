@@ -1,0 +1,10 @@
+{
+    "name": "asciidoc",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "customizations": {
+        "vscode": {
+        "extensions": [
+            "asciidoctor.asciidoctor-vscode"
+        ]}
+    }
+}

@@ -2,8 +2,6 @@ name: Build Chinese Documents
 
 on:
   push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
