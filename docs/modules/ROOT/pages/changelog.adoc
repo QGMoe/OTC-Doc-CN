@@ -1,0 +1,52 @@
+= 天圆地方更新日志
+
+== v0.2.3
+
+*请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
+
+*ATTENTION*: This project is still under *EARLY* development stage. Therefore, many unknown bugs may still exist. *BACK UP* your world!
+
+详细更新信息https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[见此]。
+
+Click https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[HERE] to read detail update information.
+
+=== 新内容 New
+
+==== 流体物理 Fluid Physics
+
+* 在 MORE REALITY （FINITE 有限）模式下，加入了对模组 [TAN] 意志坚定（Tough As Nails）玩家从世界中饮水机制的兼容。现在当启用意志坚定兼容模块时，玩家可以饮用非满格（level > 0）的水方块，且饮用时每次会消耗一层（Quanta）水；
+
+  Now, under MORE REALITY (FINITE ) mode, a compatibility mechanism is added to the mechanism that players can drink water from the world in Tough As Nails, a famous Minecraft mod. Now when the Tough As Nails compatibility is enabled, players can drink water blocks that has level larger than 0, and every time players perform a drinking action, water blocks will be consumed by 1 quanta.
+
+  * 直接从世界中饮用纯净水的机制也有拓展。默认情况下仍然是一次性饮用整个方块，但现在可以饮用非满格的纯净水方块。实际饮用增加的水分值受方块剩余水量影响，具体计算公式为：(残余层数 + 5) /2 并向下取整；
+
+    The mechanism that players can drink purified water blocks directly from the world is also extended. By default, players will still consume a whole block every time, but now players can drink purified water blocks that has level larger than 0. The exact thirst increase is affected by the left amount of fluid, which has a formula: (LEFT QUANTAS + 5) / 2 and then round down.
+
+  * 加入了布尔值配置项 drinkPurifiedWaterByQuanta，默认为 false。当为 true 时，饮用纯净水方块也会使一层一层喝，每层提供 3 点水分值（1.5 个水滴）；
+
+    Added boolean config item *drinkPurifiedWaterByQuanta*. By default, it is false. When it is true, players will also drink purified water blocks by quanta, where each quanta will provide 3 points of thirst.
+
+
+* 加入了布尔值配置项 ToughAsNailsCompat，默认为 true。当为 true 时，若检测到玩家已安装意志坚定，则会启用兼容模块。
+
+  Added boolean config item *ToughAsNailsCompat*. By default, it is true. When it is true, if GeoCraft detects Tough As Nails, the compatibility model will be activated. 
+
+
+=== 变更 Change
+
+==== 架构 Architecture
+
+* 将模组兼容信息打包为独立的 GeoCompatInfo 类，统一由 MixinHandler 类管理。
+
+  Mod compatibility infomation is packed into a single class called GeoCompatInfo, which will be managed uniformly by a class called MixinHandler. 
+
+
+==== 流体物理 Fluid Physics
+
+* 修改了 MORE REALITY （FINITE 有限）模式下 RayTrace （射线检测，用于检测玩家点击的方块）操作中检测流体的逻辑，新版本允许选中非满的流体（包括原版 BlockLiquid 和 Forge 经典流体 BlockFluidClassic）。
+
+  该项更改可能引发新的兼容性问题，请注意测试。
+
+  Under MORE REALITY (FINITE) mode, the logic of RayTrace ( a necessary operation that has to be performed when checking the exact block selected by player ) that detects fluids is modified. New version allows a selection of non-full fluid block ( including BlockLiquid in vanilla Minecraft and BlockFluidClassic in Forge ).
+
+  This modification may cause new compatibility issues. Doing a full test is recommended.
