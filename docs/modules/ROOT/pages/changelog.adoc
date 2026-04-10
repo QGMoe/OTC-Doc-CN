@@ -1,12 +1,15 @@
-= 天圆地方更新日志
+:page-title: 天圆地方 v0.2.x 更新日志
 
+= 天圆地方 v0.2.x 更新日志
+
+[#v0.2.3]
 == v0.2.3
 
 *请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
 
 *ATTENTION*: This project is still under *EARLY* development stage. Therefore, many unknown bugs may still exist. *BACK UP* your world!
 
-详细更新信息https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[见此]。
+详细更新信息link:https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[见此]。
 
 Click https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[HERE] to read detail update information.
 
@@ -15,21 +18,20 @@ Click https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[HERE] to 
 ==== 流体物理 Fluid Physics
 
 * 在 MORE REALITY （FINITE 有限）模式下，加入了对模组 [TAN] 意志坚定（Tough As Nails）玩家从世界中饮水机制的兼容。现在当启用意志坚定兼容模块时，玩家可以饮用非满格（level > 0）的水方块，且饮用时每次会消耗一层（Quanta）水；
++
+Now, under MORE REALITY (FINITE ) mode, a compatibility mechanism is added to the mechanism that players can drink water from the world in Tough As Nails, a famous Minecraft mod. Now when the Tough As Nails compatibility is enabled, players can drink water blocks that has level larger than 0, and every time players perform a drinking action, water blocks will be consumed by 1 quanta.
 
-  Now, under MORE REALITY (FINITE ) mode, a compatibility mechanism is added to the mechanism that players can drink water from the world in Tough As Nails, a famous Minecraft mod. Now when the Tough As Nails compatibility is enabled, players can drink water blocks that has level larger than 0, and every time players perform a drinking action, water blocks will be consumed by 1 quanta.
+** 直接从世界中饮用纯净水的机制也有拓展。默认情况下仍然是一次性饮用整个方块，但现在可以饮用非满格的纯净水方块。实际饮用增加的水分值受方块剩余水量影响，具体计算公式为：(残余层数 + 5) /2 并向下取整；
++
+The mechanism that players can drink purified water blocks directly from the world is also extended. By default, players will still consume a whole block every time, but now players can drink purified water blocks that has level larger than 0. The exact thirst increase is affected by the left amount of fluid, which has a formula: (LEFT QUANTAS + 5) / 2 and then round down.
 
-  * 直接从世界中饮用纯净水的机制也有拓展。默认情况下仍然是一次性饮用整个方块，但现在可以饮用非满格的纯净水方块。实际饮用增加的水分值受方块剩余水量影响，具体计算公式为：(残余层数 + 5) /2 并向下取整；
-
-    The mechanism that players can drink purified water blocks directly from the world is also extended. By default, players will still consume a whole block every time, but now players can drink purified water blocks that has level larger than 0. The exact thirst increase is affected by the left amount of fluid, which has a formula: (LEFT QUANTAS + 5) / 2 and then round down.
-
-  * 加入了布尔值配置项 drinkPurifiedWaterByQuanta，默认为 false。当为 true 时，饮用纯净水方块也会使一层一层喝，每层提供 3 点水分值（1.5 个水滴）；
-
-    Added boolean config item *drinkPurifiedWaterByQuanta*. By default, it is false. When it is true, players will also drink purified water blocks by quanta, where each quanta will provide 3 points of thirst.
-
+** 加入了布尔值配置项 drinkPurifiedWaterByQuanta，默认为 false。当为 true 时，饮用纯净水方块也会使一层一层喝，每层提供 3 点水分值（1.5 个水滴）；
++
+Added boolean config item _drinkPurifiedWaterByQuanta_. By default, it is false. When it is true, players will also drink purified water blocks by quanta, where each quanta will provide 3 points of thirst.
 
 * 加入了布尔值配置项 ToughAsNailsCompat，默认为 true。当为 true 时，若检测到玩家已安装意志坚定，则会启用兼容模块。
-
-  Added boolean config item *ToughAsNailsCompat*. By default, it is true. When it is true, if GeoCraft detects Tough As Nails, the compatibility model will be activated. 
++
+Added boolean config item _ToughAsNailsCompat_. By default, it is true. When it is true, if GeoCraft detects Tough As Nails, the compatibility model will be activated. 
 
 
 === 变更 Change
@@ -37,16 +39,486 @@ Click https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.2...v0.2.3[HERE] to 
 ==== 架构 Architecture
 
 * 将模组兼容信息打包为独立的 GeoCompatInfo 类，统一由 MixinHandler 类管理。
-
-  Mod compatibility infomation is packed into a single class called GeoCompatInfo, which will be managed uniformly by a class called MixinHandler. 
++
+Mod compatibility infomation is packed into a single class called GeoCompatInfo, which will be managed uniformly by a class called MixinHandler. 
 
 
 ==== 流体物理 Fluid Physics
 
 * 修改了 MORE REALITY （FINITE 有限）模式下 RayTrace （射线检测，用于检测玩家点击的方块）操作中检测流体的逻辑，新版本允许选中非满的流体（包括原版 BlockLiquid 和 Forge 经典流体 BlockFluidClassic）。
++
+该项更改可能引发新的兼容性问题，请注意测试。
++
+Under MORE REALITY (FINITE) mode, the logic of RayTrace ( a necessary operation that has to be performed when checking the exact block selected by player ) that detects fluids is modified. New version allows a selection of non-full fluid block ( including BlockLiquid in vanilla Minecraft and BlockFluidClassic in Forge ).
++
+This modification may cause new compatibility issues. Doing a full test is recommended.
 
-  该项更改可能引发新的兼容性问题，请注意测试。
+[#v0.2.2]
+== v0.2.2
 
-  Under MORE REALITY (FINITE) mode, the logic of RayTrace ( a necessary operation that has to be performed when checking the exact block selected by player ) that detects fluids is modified. New version allows a selection of non-full fluid block ( including BlockLiquid in vanilla Minecraft and BlockFluidClassic in Forge ).
+*请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
 
-  This modification may cause new compatibility issues. Doing a full test is recommended.
+*ATTENTION*: This project is still under *EARLY* development stage. Therefore, many unknown bugs may still exist. *BACK UP* your world!
+
+详细更新信息link:https://github.com/qiguaideaaaa/GeoCraft/compare/v0.2.1...v0.2.2[见此]。
+
+=== 新内容 New
+
+==== 架构 Architecture
+
+* 正式将自行研发的命令构建 API Nickel API 以内置模组的方式内嵌到天圆地方中，版本号为 v0.0.1，版本代码为 -1024。v0.0.x 和负数的版本代码均表示 Nickel API 处于内嵌未作为独立模组发布的阶段；
+* 加入 GeoCompatLoader，用于统一处理大部分与第三方模组的兼容逻辑；
+* 模组构建系统迁移到 Cleanroom 的 ForgeDevEnv 模板，构建所需 Java 版本升级到 Java 25；
+* 单元测试所需的 JUnit 版本从 4.x.x 升级到 5.x.x。
+
+==== Nickel API
+
+* 正式从天圆地方的 API 分离，命名为镍 API（Nickel API）；
+* 加入了如下命令节点：
+
+** 实体类型参数节点（Entity Entry Selector Node）；
+** 流体参数节点（Fluid Selector Node）；
+** 矿物词典参数节点（Ore Dictionary Selector Node）；
+** 双精度浮点数三维向量参数节点（Vec3d Node）；
+** For-Each 节点（For-Each Node）；
+** 物品堆参数节点（Item Stack Node）；
+** 维度参数节点（Dimension Node）；
+** 方块状态参数节点（Block State Node）；
+** 命令运行节点（Run Command Node）；
+** 重定向运行命令节点（Redirect Command Node）；
+
+* 加入了工具类 Matchers，提供了一些基本的智能匹配逻辑；
+* 为 ValidChecker 加入了一些内置的参数验证逻辑；
+* 字符串节点（String Node）允许白名单、黑名单和正则过滤；
+* 为参数节点加入了装饰器（Decoration）功能，允许在参数完成解析后进一步处理参数；
+* 加入了文档生成功能，支持命令文档生成、基本错误提示、参数名称和注释及国际化等。
+
+==== 命令 Commands
+
+* 加入了 /fluidphysics 命令，支持查询当前的流体物理模式（/fluidphysics query mode）和查询指定位置的蒸发状态（/fluidphysics operation evaporate）。在 VANILLA/ VANILLA LIKE 模式下，查询结果为预计蒸发量。在 MORE REALITY 模式下，查询结果为蒸发概率。通过运行 /fluidphysics operation evaporate <坐标> do 可以真正的在指定位置执行一次蒸发操作；
++
+Added /fluidphysics.
+
+* 为 /fluidphysics 命令和 /atmosphere 命令加入了对 https://github.com/xhyrom/brigo[Brigo] 模组的兼容。
+
+=== 变更 Change
+
+==== API
+
+* 天圆地方 GeoCraft API 版本号升级到 v0.3.0，版本代码升级到 2；
++
+GeoCraft API version is upgraded to v0.3.0, and the version number is upgraded to 2.
+
+* API 内包 `top.qiguaiaaaa.geocraft.api.fluid_physics` 重命名为 `top.qiguaiaaaa.geocraft.api.fluidphysics`。
+
+==== 命令 Commands
+
+* /atmosphere 命令用 Nickel API 彻底重写；
++
+/atmosphere is completely rewritten via Nickel API.
+
+** /atmosphere stop 子命令加入了可选的维度参数，可以指定操作的维度；
+** /atmosphere util block_info 命令加入了可选的方块状态参数，可以指定要查询的方块状态；
+** 为部分参数加入了中英双语注释，并国际化了全部参数名称；
+** /atmosphere track 子命令的文件名参数现在要求输入必须满足正则表达式 `+[^\s\\/:\*\?\"<>\|](\x20|[^\s\\/:\*\?\"<>\|])*[^\s\\/:\*\?\"<>\|\.]$+`；
+
+* 为 /atmosphere 和 /fluidphysics 更新了运行权限要求：
+
+** /atmosphere 命令现在需要权限等级为 2，若为玩家运行还要求需要在 Forge 权限系统中拥有权限节点 geocraft.command.atmosphere；
+
+*** /atmosphere set 子命令对于玩家，现在需要 Forge 权限节点 geocraft.command.atmosphere.set；
+*** /atmosphere add 子命令对于玩家，现在需要 Forge 权限节点 geocraft.command.atmosphere.add；
+*** /atmosphere stop 子命令对于玩家，现在需要 Forge 权限节点 geocraft.command.atmosphere.stop；
+*** /atmosphere reset 子命令对于玩家，现在需要 Forge 权限节点 geocraft.command.atmosphere.reset；
+*** /atmosphere query 子命令对于玩家，现在需要 Forge 权限节点 geocraft.command.atmosphere.query；
+*** /atmosphere util 子命令对于玩家，现在需要 Forge 权限节点 geocraft.command.atmosphere.util；
+*** /atmosphere track 子命令现在明确要求需要玩家运行，并要求至少有权限等级 4 和 Forge 权限节点 geocraft.command.atmosphere.track；
+
+** /fluidphysics 命令需要权限等级 2，若为玩家运行还要求需要在 Forge 权限系统中拥有权限节点 geocraft.command.fluidphysics；
+
+* 在单人游戏模式下，若本地游戏语言为简体中文（zh_cn），则/atmosphere 指令现在会加载其别名`/大气`。
+
+==== 流体物理 Fluid Physics
+
+* 模组内部对于 VANILLA LIKE 和 MORE REALITY 流体物理模式的称呼改为“经典”（CLASSIC）和“有限”（FINITE），外部配置和接口暂时保持不变；
+* 略微优化了 MORE REALITY 流体物理模式下，原版流体方块和模组流体方块流动时的性能。
+
+=== 修复 Fix
+
+==== API
+
+* 修正了流体地理状态（Fluid State）在被调用 fill 方法补充流体时未检测 doFill 条件的问题；
+* 修正了基本大气访问器在添加和抽取流体的行为，在之前其未能正确检测发布的 Forge 事件的结果，导致这段逻辑未能工作。该项修正解决了水无法蒸发的问题。
+
+==== 模组内部
+
+* 修正在 MORE REALITY 流体物理模式下，岩浆流动到水上未能正确与水反应的问题；
++
+Fix the problem that under MORE REALITY, lava which flows over the water won't interact with water.
+
+* 修正 MORE REALITY 流体物理模式下，水蒸发逻辑未遵循配置中的 canWaterEvaporate 配置的问题；
++
+Fix the problem that under MORE REALITY, the logic of evaporation didn't follow canWaterEvaporate configuration.
+
+* 现在封闭大气系统（Close Atmosphere System）的大气访问器在被询问是否能够访问到大气时总是返回 true，以解决水方块在地狱未能正常蒸发的问题；
++
+Now the Atmosphere Accessor of Close Atmosphere System always return true when being asking whether the atmosphere is accessible or not, in order to solve the problem that water blocks didn't evaporate as usual.  
+
+* 当土壤作为载流方块被设置流体层数的时候，现在会检查新的层数是否合法，避免了边界条件下的游戏崩溃。
++
+Now it checkes the validation of new number of layers when the dirt is set layers as Layered Fluid Host Block, avoiding unusal crash by strange bugs.
+
+[#v0.2.1]
+== v0.2.1
+
+*请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
+
+ATTENTION: This project is still under EARLY development stage. Therefore, many unknown bugs may still exist. BACK UP your world! 
+
+=== 变更 Change
+
+* 为配置文件中部分配置项添加了英文翻译。
++
+Added English tralsations for some configuration items in the configuration file.
+
+
+=== 修复 Fix
+
+* 修正 MORE REALITY 下，模组流体无法进行压强流动的问题。
++
+Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic.
+
+[#v0.2.0]
+== v0.2.0
+
+*请注意，本项目仍处于早期开发阶段，因此仍有可能存在未知的 bug，请在使用前注意备份！*
+
+=== 修复
+
+==== 大气系统
+
+* 修正大气降水进入载流方块时，没有将水量正确从 mB 转换到 QB，导致无法降水的问题。
+
+=== 升级指南
+
+从 0.1 ~ 0.2.0-alpha.3 版本升级至该版本，请手动执行以下操作：
+
+1. [非必需] 将配置项 `atmosphere.underlyingReflectivity` 中两个包含 minecraft:sand 的键从 `minecraft:sand[variant=sand]` 和 `minecraft:sand[variant=red_sand]` 替换为 `+minecraft:sand[humidity=*,variant=sand]+` 和 `+minecraft:sand[humidity=*,variant=red_sand]+`，因为默认值在 0.2.0-beta.1 发生了变化。
+
+从 0.1 ~ 0.2.0-beta.3 版本升级至该版本，请手动执行以下操作：
+
+1. [非必需] 将配置项 fluid_physics.pressure_system.maxPauseTimeForPressureSystem 调整至 500 ms，因为默认值在 0.2.0-beta.4 发生了变化。
+
+[#v0.2.0-rc.1]
+== v0.2.0-rc.1
+
+*请注意，该版本是 v0.2.0 的 release candidate （发行候选） 阶段版本，尽管相比于 alpha 和 beta 阶段的版本稳定了许多，但考虑到本项目仍处于早期开发阶段，因此仍有可能存在未知的 bug，请在使用前注意备份！*
+
+=== 新内容
+
+==== 命令 API
+
+* 中继执行节点（RelayExecuteNode）现在提供了可以在执行子节点完成后在 finally 块运行指定逻辑的功能；
+* 加入了智能分支节点（SmartSplitNode）以及对应的构建器；
+* 加入了 UUID 参数节点、目标选择器参数节点和方块选择器参数节点；
+* 参数节点（ParameterNode）提供了基本的国际化功能，要求所有参数节点需要提供当前节点类型名称的国际化键，并完善了部分报错信息；
+* 为目前所有的参数节点的类型加入了对应的国际化键和该国际化键对应的英文翻译；
+* 为字面量节点和参数节点的构建器加入了 `smart()` 功能，等同于调用 `then(smart())`，便于快速使用智能分支节点。
+
+=== 变更
+
+==== API
+
+* API 版本号正式和模组版本号分离，并提供了版本代码。当前天圆地方 GeoCraft API 版本升级到 v0.2.0，版本代码 1。
+
+==== 命令 API
+
+* 大幅调整了命令 API 包结构，构建器从 Nodes 类中拆分成独立类，位于包 `top.qiguaiaaaa.geocraft.api.command.builder` 之下；
+* 优化了参数节点（ParameterNode） 的 suggest() 建议提供逻辑；
+* CommandRunFunction 接口调整，移除了显式 World 和 ICommandSender 参数，更加简洁；
+* 大幅调整了参数节点的构建器，加入了 SELF 泛型，即使用 CRTP（Curiously Recurring Template Pattern，奇异递归模板模式）以便利构建器的构建；
+* 完善了部分文档；
+* 布尔值参数节点、数字参数节点、大气访问器参数节点和方块坐标参数节点的匹配逻辑得到了增强；
+
+** 布尔值参数节点现在默认会匹配 `true`、`false`、`1` 和 `0`；
+** 数字参数节点现在会默认匹配符合条件的数字；
+** 大气访问器和方块坐标参数节点的匹配逻辑现在会匹配双精度浮点数数字，两者的默认匹配逻辑一致；
+
+* 参数节点的 `checkValid()` 方法允许抛出的错误调整，现在可以抛出语法错误、非法数字错误和非法方块状态错误。
+
+==== 流体物理
+
+* MORE REALITY 流体物理模式下，玩家在实际可装流体未满 1000 mB 的情况下，如果允许用桶装，现在也会记录进玩家统计数据了。
+
+==== 其他
+
+* 清理了在 v0.2.0 开发过程中大多数废弃的类和方法。
+
+=== 修复
+
+==== 命令 API
+
+* CommandRunFunction 的重载方法调整，以避免编译时无法自动推断相应的方法调用。
+
+==== 载流方块相关
+
+* 将多处直接操作载流方块层结构的方法改为使用 QB 操作，修复了一些 bug，例如水垂直流入雪时的计算不正确的问题，该问题会导致单层水方块浮空或水量减少（行行好，这个问题已经修了好几个版本了 (＠_＠;) ）。
+
+=== 升级指南
+
+从 0.1 ~ 0.2.0-alpha.3 版本升级至该版本，请手动执行以下操作：
+
+1. [非必需] 将配置项 `atmosphere.underlyingReflectivity` 中两个包含 minecraft:sand 的键从 `minecraft:sand[variant=sand]` 和 `minecraft:sand[variant=red_sand]` 替换为 `+minecraft:sand[humidity=*,variant=sand]+` 和 `+minecraft:sand[humidity=*,variant=red_sand]+`，因为默认值在 0.2.0-beta.1 发生了变化。
+
+从 0.1 ~ 0.2.0-beta.3 版本升级至该版本，请手动执行以下操作：
+
+1. [非必需] 将配置项 fluid_physics.pressure_system.maxPauseTimeForPressureSystem 调整至 500 ms，因为默认值在 0.2.0-beta.4 发生了变化。
+
+[#v0.2.0-beta.4]
+== v0.2.0-beta.4
+
+*请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
+
+=== 新内容
+
+==== API
+
+* 在 GeoFluidSetting 中加入了设置维度重力和获取维度重力大小倒数的 API 接口。
+
+==== 流体物理
+
+===== 压强系统
+
+* 加入了配置项 doNotDropChunksWhenFailingPausingPressureSystem，默认启用。启用后，当服务器无法及时暂停压强系统时，不进行区块卸载操作；
+* 加入了配置项 doNotRunTasksWhenFailingGettingReadLock，默认启用。启用后，当压强系统无法及时获取锁时，跳过任务执行；
+* 加入了配置项 useFairLock，配置用于控制压强系统读取主世界的锁是否公平。当为 true 时使用公平锁，默认为使用公平锁；
+* 加入了配置项 minimumGranularityOfTaskExecutionVolume，配置非线程压强系统时，压强系统在获取锁之后一次性可更新的最大任务数量，默认为 25；
+* 加入了配置项 thread_pool.minimumGranularityOfTaskExecutionVolume，类似于上面的配置项，但是用于线程池，默认为 核心数 * 10，并且值不大于 1024；
+* 加入了配置项 wrapModifiedChunkSavingMethod，使用 MixinExtras 的特性为压强系统暂停机制提供更好的兼容性，默认为 false。
+
+===== 其他
+
+* 根据 https://github.com/qiguaideaaaa/GeoCraft/issues/4[#4] 加入了基于 Tick Rate 的维度重力机制，适用于 MORE REALITY 和 VANILLA LIKE 两种流体物理模式，包括 MORE REALITY 下的雪方块；
+* 为配置项 fluidPhysicsInfoForEachWorld 中的 FluidPhysicsInfo 加入了 gravity.relativeGravitySize JSON 配置项，允许配置每个维度的重力大小，默认值为 1，表示正常的重力。当重力小于 0.002 时，视为无重力，此时流体方块不会流动（除非是不受本模组支持的流体方块）。该项不能为负，否则游戏会在启动时崩溃；
+* 加入了配置项 allowDynamicLiquidNeighborUpdate，默认为 false，当为 true 时允许原版动态流体接受邻居更新，不适用于 VANILLA 流体物理模式。
+
+=== 变更
+
+==== API
+
+* 配置 API 的 JSON 功能所使用的 GSON 现在会在构建时加上 excludeFieldsWithoutExposeAnnotation() 以使 @Expose 注解被正确应用。
+
+==== 流体物理
+
+* 压强系统的配置项 maxPauseTimeForPressureSystem 默认值由 200 更改为 500；
+* 对压强系统的暂停机制进行重构，现在压强系统的暂停机制使用锁进行实现，以提供更好的稳定性和安全性；
+* 移动内部包 `top.qiguaiaaaa.geocraft.geography.fluid_physics` 到 `top.qiguaiaaaa.geocraft.geography.fluidphysics`；
+* 现在更多地方会使用方块更新器了；
+
+** MORE REALITY 下的 Classic 模组流体方块现在全部使用方块更新器；
+** MORE REALITY 下的雪方块现在全部使用方块更新器；
+** VANILLA LIKE 下的原版流体方块和模组流体方块现在全部使用方块更新器；
+
+* FluidPhysicsInfo 的版本字段”version“现在从 1 升级到 2。
+
+=== 修复
+
+==== 流体物理
+
+* 修复了当启用 useCompressedCoordinate 时，发布压强任务会错误的清理当前所有等待中的压强任务的问题。
+
+[#v0.2.0-beta.3]
+== v0.2.0-beta.3
+
+*请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
+
+=== 修复
+
+* 重构了方块更新器的锁获取和释放机制，避免在进行计划刻更新时持有任何锁，以使得计划刻更新触发的区块加载一定不会导致死锁。
+
+[#v0.2.0-beta.2]
+== v0.2.0-beta.2
+
+*请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
+
+=== 新内容
+
+==== API
+
+* 加入了一个新的命令 API，但尚未投入使用；
+* 加入了一个内部 API，便于使用自己的方块实例替换原版的方块实例；
+* 弃用了 `FluidUtil#getFluid(Material)`，因为直接通过 Material 获取流体被证实在模组环境下是不推荐的；
+* 调整了载流方块 `ILayeredFluidHost#addLayer` 中 `IBlockState` 参数的文档说明，现在该参数不一定等于 `World#getBlockState` 的方块状态。
+
+==== 命令
+
+* 加入了 ExecuteContext 和 SuggestContext 上下文，以及父类 CommandContext 上下文；
+* 加入了整形、长整型、双精度浮点数、高精度整数和高精度小数五个数字种类；
+* 加入了 CommandBuilder 和 BuiltCommand 用于函数式创建命令；
+* 加入了命令节点系统，并加入了字面量节点、多字面量节点、条件路由节点、运行节点、中继运行节点、权限检查节点、单路由节点和（智能）参数节点（大气访问器参数节点、方块坐标参数节点、物品选择参数节点、高精度整数参数节点、高精度小数参数节点、布尔值参数节点、双精度浮点数参数节点、整型参数节点、长整型参数节点、字符串参数节点），以及节点接口、智能节点接口和可选节点接口；
+* 加入了 Nodes 类用于函数式创建节点。
+
+=== 变更
+
+==== 流体物理
+
+* 现在雪也是通过继承而非 Mixin 进行修改；
+* 现在线程池模式压强系统遇到 `IndexOutOfBoundsException` 时不再打印日志，而是会静默处理，因为这是预期会发生的错误；
+* 优化了溯源搜索和 MORE REALITY 下桶、瓶子和泵吸取流体的内存占用。
+
+==== 土壤系统
+
+* 土壤系统底层拓展方式从直接 Mixin 改成了继承并替换原有方块，解决了与超多生物群系的兼容性问题（link:https://github.com/qiguaideaaaa/GeoCraft/issues/3[#3]）。
+
+==== 其他
+
+* 现在方块更新器的类 `BlockUpdater` 可以被继承；
+* 加入了未使用的 `FluidloggedBlockUpdater`，继承自 `BlockUpdater`，其可以正确处理 `FluidState` 的计划刻更新。
+
+=== 修复
+
+==== 流体物理
+
+* 完善 MORE REALITY 下原版流体垂直流动、坡度流动和平均流动，以及 VANILLA LIKE 下原版流体垂直流动和溯源流动的触发条件和判断是否是流体方块的逻辑，以解决与超多生物群系水生植物的兼容性问题（link:https://github.com/qiguaideaaaa/GeoCraft/issues/3[#3]）；
+* 加入了 `FluidloggedAPICompatTransformer`，尚未投入使用。其会将所有实现了 `IFluidloggable` 的类（含水方块）自动实现 `IFluidloggableLayeredFluidHost` 接口；
+* 完善了 MORE REALITY 下原版流体方块的渲染逻辑，以保证超多生物群系水生植物的渲染和原版一致（link:https://github.com/qiguaideaaaa/GeoCraft/issues/3[#3]）；
+* 优化了 MORE REALITY 下雪作为载流方块内存储流体变更的计算，避免了可能的计算异常导致崩溃（link:https://github.com/qiguaideaaaa/GeoCraft/issues/3[#3]）。
+
+==== 其他
+
+* 为大量 Mixin 类的字段和方法加入了前缀“天圆地方$”，以降低 Mixin 撞车的概率，由此解决了在 MORE REALITY 流体物理模式下会与 FluidloggedAPI 在游戏启动时因 Mixin 方法冲突引发的在 BakeModelEvent 时的空指针异常问题；
+* 方块更新器现在不会更新未加载区块的计划刻，以避免导致死锁。
+
+[#v0.2.0-beta.1]
+== v0.2.0-beta.1
+
+*请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
+
+=== 新内容
+
+==== 流体物理
+
+* 为压强系统加入了配置项 `useCompressedCoordinate`，默认禁用。当启用时，压强系统内部会将 BlockPos 转换为 Long 并采用更高效的数据结构，以降低内存占用；
+* 为 MORE REALITY 流体物理模式中大范围压强广搜任务加入了对应的单次任务形式。搜寻范围小于等于 maxSearchTimesPerSearchForLargeRangeTask 的大范围压强广搜任务也会转换为单次任务。
+
+=== 变更
+
+==== 流体物理
+
+* 提高了启用多线程时的压强系统在遍历任务队列时应对异常的能力；
+
+==== 大气系统
+
+* 现在大气加载范围不再是全局配置，而是每个维度可以单独配置。弃用了原有配置项 `maxLoadDistance`，其被新的位于大气系统信息的配置项 `max_load_distance` 取代；
+* 为沙子的反射率配置添加了 `humidity=*`，以使得该配置能够正常生效。
+
+=== 升级指南
+
+从 0.1 ~ 0.2.0-alpha.3 版本升级至该版本，请手动执行以下操作：
+
+. [非必需] 将配置项 `atmosphere.underlyingReflectivity` 中两个包含 minecraft:sand 的键从 `minecraft:sand[variant=sand]` 和 `minecraft:sand[variant=red_sand]` 替换为 `+minecraft:sand[humidity=*,variant=sand]+` 和 `+minecraft:sand[humidity=*,variant=red_sand]+`。
+
+[#v0.2.0-alpha.3]
+== v0.2.0-alpha.3
+
+*请注意，该版本是 v0.2.0 的 alpha 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
+
+=== 新内容
+
+==== API
+
+* 在 ThreadType 中添加了 CHUNK_IO_THREADS 枚举常量，用来标记区块加载与保存的 IO 线程；
+* 完善了一些 Javadoc。
+
+=== 修复 & 优化
+
+==== 流体物理
+
+* 修复了在 VANILLA LIKE 流体物理模式下，溯源搜索过程中可能会触发邻近未加载区块加载的问题；
+* 修复了在 MORE REALITY 流体物理模式下，水流入雪的计算不正确的问题。
+
+==== 载流方块
+
+* 修复了因为雪的两个 Mixin 错误的优先级导致 MORE REALITY 下的雪机制无法工作的问题；
+* 修复了雪融化成水后因为尝试从水中获取 Mixture 方块属性而导致的游戏崩溃问题。
+
+==== 其他
+
+* 现在 BlockUpdater 应该是线程安全的了，因此修复了可能的因区块异步加载/保存而导致的同步修改问题。
+
+[#v0.2.0-alpha.2]
+== v0.2.0-alpha.2
+
+=== API
+
+* 完善了 Javadoc；
+* 现在载流方块的操作支持 NBT 存取了；
+* 调整了 LayeredFluidHostUtil 和 QBUtil 内的常数，并完善了方法；
+* 完善了与 IFluidlogged API 的兼容接口；
+* 将 BlockUpdater 类迁移至 top.qiguaiaaaa.geocraft.world 包下面，并基于 Forge 能力系统重构了 BlockUpdater 系统；
+* 现在一个 ConfigItem 支持标记是否弃用了；
+* 为 IFluidUpdateTask 新增了 onFailure 回调函数。
+
+=== 土壤水
+
+* 调整了土壤水的流动逻辑；
+* 现在土壤的每层高度由四分之一方块调整为五分之一方块。
+
+=== 流体物理
+
+==== 雪
+
+* 优化了水雪混合逻辑；
+* 现在雪方块在 MORE_REALITY 模式下也能放置在屏障和浮冰上方了；
+* 雪的层数从 8 变成 16，一层现在是 67.5 mB。
+
+==== 流动
+
+* 完善了平均流动模式下的分配逻辑；
+* 现在 FluidUpdateManager 会在任务不能够执行更新时为任务执行 onFailure 回调函数。
+
+=== 其他
+
+* 现在 BlockUpdater 会将计划刻保存到对应区块，而非是保存到整个维度的数据了；
+* 现在 BlockUpdater 不会丢弃任务了，只会拖延任务执行时间，以遵循原版计划刻行为；
+* 弃用了 BlockUpdater 的相关配置项 cleaningPeriod 和 allowDynamicFluidToUpdate。
+
+[#v0.2.0-alpha.1]
+== v0.2.0-alpha.1
+
+*请注意，该版本是 v0.2.0 的 alpha 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
+
+=== API
+
+* “透水方块”被正式命名为 _Layered Fluid Host Block_ ，中文全称 *分层流体承载方块*，简称 *载流方块*。并重命名和大改了相关接口。
+* 定义了新流体单位 Quanta–Millibucket Unified Fluid Unit（Q-mB Unified Unit），简称 QB，中文名 层-毫桶统一流体单位。1 QB = 1/72072000 B 。
+* 调整了一堆接口，具体见 commit。
+* `top.qiguaiaaaa.geocraft.api.atmosphere.AtmosphereWorldInfo` 被重命名为 `AtmosphereInfo`，并且去除了 WorldServer 类型的限制。
+* 现在地理状态 FluidState 实现的是 IFluidTank 而不是 IFluidHandler。
+* 现在 Layer 是一个 ForgeEnergy 的 IEnergyStorage。
+* 完善了 Javadoc。
+
+=== 流体物理
+
+* 将原版流体的平均流动模式抽象成一个方法。
+* 现在融化时提供了不检查天空光照条件的配置选项，主世界默认仍然检查天空光照。
+* 雪的融化逻辑现在是全部流体模式通用，但非满层的雪仅在 MORE REALITY 模式下会融化成水，否则会变成空气。
+
+=== 大气系统
+
+* 蒸发量计算现在被乘以 3409.2，其值根据随机刻间隔中位数得出。不然蒸发太慢了。
+* 现在 VANILLA 和 VANILLA_LIKE模式下的水蒸发，若一次蒸发量过大也会导致水消失了。
+* 优化了地理状态的保存和加载，现在默认使用注册名保存和加载。
+* 现在 Atmosphere 接入了 Forge 能力系统。
+* 调整了 Atmosphere 和层级的 NBT 结构。
+* 主世界大气系统的降雨平滑系数默认值从 4096 调整为 256，以加快降水速度。
+* 对主世界大气系统的水凝结速度做了限制，避免一次性凝结大量水释放过多热量。
+* 修复了水蒸发的一个 bug，现在水蒸发过程中的温度变化是能量守恒的了。
+* 现在用于计算饱和水汽压的温度使用的是下垫面而非大气温度。
+* 现在主世界大气系统的辐射计算使用的是积分公式而非直接使用斯特藩-玻尔兹曼定律，以避免数值溢出的问题。
+* 修复了 vanilla 大气系统计算天气时的一个 bug，该 bug 会在获取天气时错误地更新大气实例的主要生物群系变量。
+
+=== 其他
+
+* 修复了 Logo 不显示的问题。
+* 现在 BlockUpdater 会自动保存计划刻，以避免重进存档水不更新的问题。
