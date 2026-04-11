@@ -2,7 +2,7 @@
 
 = 天圆地方 v0.2.x 更新日志
 
-[#v0.2.3]
+[#v0_2_3]
 == v0.2.3
 
 *请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
@@ -53,7 +53,7 @@ Under MORE REALITY (FINITE) mode, the logic of RayTrace ( a necessary operation 
 +
 This modification may cause new compatibility issues. Doing a full test is recommended.
 
-[#v0.2.2]
+[#v0_2_2]
 == v0.2.2
 
 *请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
@@ -168,7 +168,7 @@ Now the Atmosphere Accessor of Close Atmosphere System always return true when b
 +
 Now it checkes the validation of new number of layers when the dirt is set layers as Layered Fluid Host Block, avoiding unusal crash by strange bugs.
 
-[#v0.2.1]
+[#v0_2_1]
 == v0.2.1
 
 *请注意，本项目仍处于早期开发阶段，因此仍有可能存在许多未知的 bug，请在使用前注意备份！*
@@ -188,7 +188,7 @@ Added English tralsations for some configuration items in the configuration file
 +
 Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic.
 
-[#v0.2.0]
+[#v0_2_0]
 == v0.2.0
 
 *请注意，本项目仍处于早期开发阶段，因此仍有可能存在未知的 bug，请在使用前注意备份！*
@@ -209,7 +209,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 
 1. [非必需] 将配置项 fluid_physics.pressure_system.maxPauseTimeForPressureSystem 调整至 500 ms，因为默认值在 0.2.0-beta.4 发生了变化。
 
-[#v0.2.0-rc.1]
+[#v0_2_0-rc_1]
 == v0.2.0-rc.1
 
 *请注意，该版本是 v0.2.0 的 release candidate （发行候选） 阶段版本，尽管相比于 alpha 和 beta 阶段的版本稳定了许多，但考虑到本项目仍处于早期开发阶段，因此仍有可能存在未知的 bug，请在使用前注意备份！*
@@ -274,7 +274,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 
 1. [非必需] 将配置项 fluid_physics.pressure_system.maxPauseTimeForPressureSystem 调整至 500 ms，因为默认值在 0.2.0-beta.4 发生了变化。
 
-[#v0.2.0-beta.4]
+[#v0_2_0-beta_4]
 == v0.2.0-beta.4
 
 *请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
@@ -327,7 +327,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 
 * 修复了当启用 useCompressedCoordinate 时，发布压强任务会错误的清理当前所有等待中的压强任务的问题。
 
-[#v0.2.0-beta.3]
+[#v0_2_0-beta_3]
 == v0.2.0-beta.3
 
 *请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
@@ -336,7 +336,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 
 * 重构了方块更新器的锁获取和释放机制，避免在进行计划刻更新时持有任何锁，以使得计划刻更新触发的区块加载一定不会导致死锁。
 
-[#v0.2.0-beta.2]
+[#v0_2_0-beta_2]
 == v0.2.0-beta.2
 
 *请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
@@ -389,7 +389,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 * 为大量 Mixin 类的字段和方法加入了前缀“天圆地方$”，以降低 Mixin 撞车的概率，由此解决了在 MORE REALITY 流体物理模式下会与 FluidloggedAPI 在游戏启动时因 Mixin 方法冲突引发的在 BakeModelEvent 时的空指针异常问题；
 * 方块更新器现在不会更新未加载区块的计划刻，以避免导致死锁。
 
-[#v0.2.0-beta.1]
+[#v0_2_0-beta_1]
 == v0.2.0-beta.1
 
 *请注意，该版本是 v0.2.0 的 beta 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
@@ -418,7 +418,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 
 . [非必需] 将配置项 `atmosphere.underlyingReflectivity` 中两个包含 minecraft:sand 的键从 `minecraft:sand[variant=sand]` 和 `minecraft:sand[variant=red_sand]` 替换为 `+minecraft:sand[humidity=*,variant=sand]+` 和 `+minecraft:sand[humidity=*,variant=red_sand]+`。
 
-[#v0.2.0-alpha.3]
+[#v0_2_0-alpha_3]
 == v0.2.0-alpha.3
 
 *请注意，该版本是 v0.2.0 的 alpha 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
@@ -446,7 +446,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 
 * 现在 BlockUpdater 应该是线程安全的了，因此修复了可能的因区块异步加载/保存而导致的同步修改问题。
 
-[#v0.2.0-alpha.2]
+[#v0_2_0-alpha_2]
 == v0.2.0-alpha.2
 
 === API
@@ -483,7 +483,7 @@ Fix the problem that under MORE REALITY, mod fluids can't do pressure flow logic
 * 现在 BlockUpdater 不会丢弃任务了，只会拖延任务执行时间，以遵循原版计划刻行为；
 * 弃用了 BlockUpdater 的相关配置项 cleaningPeriod 和 allowDynamicFluidToUpdate。
 
-[#v0.2.0-alpha.1]
+[#v0_2_0-alpha_1]
 == v0.2.0-alpha.1
 
 *请注意，该版本是 v0.2.0 的 alpha 阶段测试版本，可能存在未知的 bug，请在使用前注意备份！*
